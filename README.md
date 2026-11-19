@@ -6,31 +6,45 @@ Western US wildfires, June–November 2019–2025. 9,279 fire-days from 1,913 fi
 
 ## Findings
 
-1. **More rain, bigger drop in fire power.** After 5 mm or more of rain, a forest fire's radiative power the next day is **85% lower** [80–89%] than after a dry day, adjusted for the fire's state, weather, season and other rain. After 2–5 mm it's 66% lower, and after 0.1–2 mm 42% lower. Non-forest fires show the same pattern with wider intervals (−74% at 5+ mm).
-2. **Most of the heavy-rain effect isn't just the storm's air.** A storm also brings cooler, more humid air. Holding post-storm temperature and humidity fixed, which makes this a lower bound, 5+ mm still cuts forest fire power by at least **74%** [66–81%]. For light rain, most of the drop comes along with the air (−18% with it held fixed).
-3. **PARDIG rain predicts fire response better than IMERG.** On fires held out of training (5-fold cross-validation grouped by fire), adding PARDIG rain improves prediction **1.4× as much** as adding IMERG-Final rain (held-out R² gain 0.038 vs 0.028). PARDIG's error is lower in 100% of fire-level bootstrap resamples (98% at the strictest cloud cutoff), and PARDIG is ahead at every cutoff (1.3–1.4×). It is a consistency check: fire response is an indirect signal of rainfall, not ground truth.
+1. **Fire power drops with rain amount.** Change in next-day fire radiative power (FRP) compared with a dry day, adjusted for fire state, weather, season and other rain:
+
+   | Rain | Forest | Non-forest |
+   |---|---|---|
+   | 0.1–2 mm | −42% [−50, −33] | −22% [−44, +9] |
+   | 2–5 mm | −66% [−74, −57] | −70% [−82, −50] |
+   | 5+ mm | −85% [−89, −80] | −74% [−85, −55] |
+
+   Non-forest has fewer rainy fire-days, so its intervals are wider.
+
+2. **Most of the heavy-rain effect remains with post-storm air held fixed.** Controlling for post-storm temperature and humidity gives −74% [−81, −66] at 5+ mm and −18% [−28, −6] at 0.1–2 mm (forest). This is a lower bound on the effect of the rain itself.
+
+3. **PARDIG predicts fire response better than IMERG.** On fires held out of training, adding PARDIG rain improves prediction 1.4× as much as adding IMERG-Final rain (R² gain 0.038 vs 0.028). PARDIG is ahead in 100% of fire-level bootstrap resamples and at every cloud cutoff.
 
 ![Dose-response](analysis/output/fig1_dose_response.png)
 
 ## Method
 
-- **Fires.** VIIRS detections (Suomi-NPP and NOAA-20, 375 m) were filtered and clustered into fire events.
-  - Static industrial sources were removed with a 1 km buffer around any FIRMS type-2 detection, because the type field is unreliable. Locations active in at least 6 months across at least 3 years were also dropped.
-  - Clustering used 2 km within a day, with a 5-day lookback to link days.
-  - Spot checks match reported fires: Dixie 2021 at ~955k vs 963k acres, Creek 2020 at ~407k vs 380k.
-- **Unit.** One fire × one day. Fire power before (the two daytime overpasses before the rain window) is compared with fire power after (the two after it). The rain window runs between overpasses, not UTC days, so afternoon storms aren't split.
-- **Outcome.** log((FRP_after + c) / (FRP_before + c)), shown as % change.
-- **Clouds.** VIIRS can't see through cloud, and a hidden fire would read as "fire went out." Overpasses with ERA5 cloud cover of 30% or more over the fire are dropped, and each period needs at least 2 clear looks.
-- **Rain.** Footprint-mean totals during the rain window, with each 15- or 30-minute image weighted by its overlap with the window. Rain before, after and in the week before the window are controls.
-- **Model.** OLS of the outcome on rain bin × fuel (forest vs. non-forest, NLCD from the year before the fire). Controls: fire power before, detection count, pre-rain trend, fire age, pixel size, temperature, humidity, VPD, wind and month. Standard errors are clustered by fire.
+- **Fires:** VIIRS 375 m active-fire detections (Suomi-NPP and NOAA-20) clustered into fire events: 2 km within a day, linked across days with a 5-day lookback. Industrial sources (gas flares, plants) and cropland burns are removed. Spot checks match reported fires (Dixie 2021, Creek 2020).
+- **Unit:** one fire × one day. FRP at the two daytime overpasses before the rain window is compared with the two after it. The rain window runs between overpasses (~23 h) rather than UTC days, so afternoon storms aren't split.
+- **Outcome:** log((FRP_after + c) / (FRP_before + c)), reported as % change.
+- **Clouds:** VIIRS can't see fires through cloud, so overpasses with ERA5 cloud cover ≥ 30% over the fire are dropped, and each period needs at least 2 clear overpasses.
+- **Rain:** footprint-mean rain total during the window, with each 15- or 30-minute image weighted by its overlap with the window. Rain before, after and in the prior week enter as controls.
+- **Model:** OLS on rain bin × fuel (forest / non-forest, from NLCD) with controls for fire state (FRP, detection count, recent trend, age), weather (temperature, humidity, VPD, wind) and month. Standard errors are clustered by fire.
+- **PARDIG vs IMERG:** 5-fold cross-validation with whole fires held out, comparing how much each product's rain improves prediction over a model with no rain.
 
 ## Robustness
 
-The curve is unchanged at cloud cutoffs of 20, 30 and 40%. Rain falling *after* the measurement shows no effect (placebo), so the curve isn't a weather-pattern artifact. Controlling for cloud cover leaves both the curve and PARDIG's edge over IMERG unchanged (1.41× with the control). The placebo, cloud-control and held-out comparisons were added after the main results were seen. Further checks (detection loss vs. cloud cover, PARDIG at 30-minute resolution, snow) are in the [notebook](analysis/results.ipynb).
+- Same curve at cloud cutoffs of 20, 30 and 40%.
+- Placebo: rain after the measurement has no effect.
+- Controlling for cloud cover: curve and PARDIG's edge unchanged (1.41×).
+- PARDIG coarsened to 30 min: edge unchanged.
 
-## Claim
+The placebo, cloud-control and held-out comparisons were added after the main results. Details in the [notebook](analysis/results.ipynb).
 
-Cloud screening keeps only fire-days with clear looks before and after the rain: about 1 in 5 with 2 mm or more, and 1 in 3 with lighter rain. The kept windows have the same rain totals as the dropped ones in each bin. But they're shorter storms (heavy rain: 4.2 h vs 5.8 h) and less often in autumn (7% vs 17% in Oct–Nov). **The results describe mostly summer storms of a few hours, falling between clear days.** Long autumn frontal storms are under-represented. Firefighting effort is unobserved. PARDIG is an experimental dataset.
+## Scope
+
+- About 1 in 5 fire-days with 2 mm or more pass cloud screening, so results mostly reflect short summer storms between clear days.
+- Firefighting effort is unobserved.
 
 ## Data sources
 
