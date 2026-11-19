@@ -1,0 +1,4 @@
+check,n,n_rainy,r2_no_rain,r2_pardig,r2_imerg,gain_pardig,gain_imerg,gain_ratio,dmse,dmse_lo,dmse_hi,pardig_better_share,dmse_rainy,dmse_rainy_lo,dmse_rainy_hi,pardig_better_share_rainy
+main (reference),9279,1345,0.1832,0.221,0.2107,0.0378,0.0275,1.3767,-0.0264,-0.0404,-0.0128,1.0,-0.1565,-0.2374,-0.0747,1.0
+cloud control,9279,1345,0.1933,0.224,0.215,0.0306,0.0217,1.4115,-0.0228,-0.0357,-0.0101,1.0,-0.139,-0.214,-0.0634,1.0
+PARDIG coarsened to 30 min,9279,1345,0.1832,0.2211,0.2107,0.0379,0.0275,1.38,-0.0266,-0.0406,-0.013,1.0,-0.1578,-0.239,-0.0756,1.0

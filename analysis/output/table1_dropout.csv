@@ -1,0 +1,5 @@
+PARDIG W rain,windows,kept at 20%,kept at 30%,kept at 40%,"rain mm, kept","duration h, kept","Oct-Nov share, kept","forest share, kept","post cloud, kept","rain mm, dropped","duration h, dropped","Oct-Nov share, dropped","forest share, dropped","post cloud, dropped"
+<0.1,12513,0.589,0.668,0.739,0.0,0.0,0.254,0.785,0.181,0.0,0.0,0.276,0.813,0.592
+0.1-2,2030,0.222,0.316,0.414,0.601,0.838,0.112,0.782,0.273,0.663,0.912,0.213,0.843,0.646
+2-5,802,0.136,0.198,0.283,3.031,2.689,0.151,0.818,0.317,3.168,3.095,0.208,0.802,0.666
+5+,688,0.097,0.169,0.26,7.856,4.229,0.069,0.724,0.323,8.669,5.767,0.171,0.83,0.696

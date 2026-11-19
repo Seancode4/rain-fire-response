@@ -1,0 +1,10 @@
+# data: keep only the final analysis tables (small; lets the notebook run without Earth Engine)
+data/*
+!data/final/
+
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
+*.log

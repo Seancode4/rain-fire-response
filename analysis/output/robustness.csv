@@ -1,0 +1,28 @@
+check,model,term,est,lo,hi,p,pct,pct_lo,pct_hi
+main (reference),dose-response,forest 0.1-2 mm,-0.548,-0.6925,-0.4036,0.0,-42.192,-49.9682,-33.2073
+main (reference),dose-response,forest 2-5 mm,-1.0857,-1.3374,-0.834,0.0,-66.2335,-73.7466,-56.5703
+main (reference),dose-response,forest 5+ mm,-1.9148,-2.2379,-1.5917,0.0,-85.263,-89.3321,-79.6418
+main (reference),dose-response,non-forest 0.1-2 mm,-0.25,-0.582,0.082,0.14,-22.1194,-44.124,8.5509
+main (reference),dose-response,non-forest 2-5 mm,-1.1941,-1.6925,-0.6957,0.0,-69.7024,-81.5944,-50.127
+main (reference),dose-response,non-forest 5+ mm,-1.3304,-1.8726,-0.7881,0.0,-73.5628,-84.6283,-54.5315
+placebo: W effects with lead-rain bins added,dose-response,forest 0.1-2 mm,-0.5503,-0.6951,-0.4055,0.0,-42.3207,-50.0958,-33.3343
+placebo: W effects with lead-rain bins added,dose-response,forest 2-5 mm,-1.088,-1.3395,-0.8365,0.0,-66.3112,-73.802,-56.6784
+placebo: W effects with lead-rain bins added,dose-response,forest 5+ mm,-1.9162,-2.24,-1.5923,0.0,-85.283,-89.3545,-79.6543
+placebo: W effects with lead-rain bins added,dose-response,non-forest 0.1-2 mm,-0.2478,-0.5793,0.0837,0.1429,-21.9484,-43.9709,8.7301
+placebo: W effects with lead-rain bins added,dose-response,non-forest 2-5 mm,-1.189,-1.6869,-0.6912,0.0,-69.5487,-81.491,-49.9012
+placebo: W effects with lead-rain bins added,dose-response,non-forest 5+ mm,-1.3266,-1.8739,-0.7792,0.0,-73.461,-84.6474,-54.124
+placebo: lead-rain bins (should be ~0),dose-response,lead 0.1-2 mm (n=1001),0.042,-0.0593,0.1432,0.4166,4.2864,-5.758,15.4014
+placebo: lead-rain bins (should be ~0),dose-response,lead 2-5 mm (n=351),-0.0708,-0.2319,0.0903,0.3892,-6.8335,-20.6978,9.4547
+placebo: lead-rain bins (should be ~0),dose-response,lead 5+ mm (n=261),-0.0691,-0.2368,0.0987,0.4196,-6.6744,-21.0857,10.3687
+cloud control,dose-response,forest 0.1-2 mm,-0.5126,-0.6578,-0.3673,0.0,-40.1034,-48.202,-30.7386
+cloud control,dose-response,forest 2-5 mm,-1.0397,-1.2945,-0.7849,0.0,-64.6447,-72.5965,-54.3855
+cloud control,dose-response,forest 5+ mm,-1.8635,-2.1858,-1.5412,0.0,-84.4867,-88.7607,-78.5875
+cloud control,dose-response,non-forest 0.1-2 mm,-0.2036,-0.5364,0.1293,0.2306,-18.4193,-41.5178,13.8023
+cloud control,dose-response,non-forest 2-5 mm,-1.1671,-1.6665,-0.6677,0.0,-68.8735,-81.1102,-48.7102
+cloud control,dose-response,non-forest 5+ mm,-1.2547,-1.7905,-0.7189,0.0,-71.4842,-83.3127,-51.2713
+bounding: post-storm temperature and RH held fixed,dose-response,forest 0.1-2 mm,-0.1958,-0.3322,-0.0594,0.0049,-17.7789,-28.2628,-5.7629
+bounding: post-storm temperature and RH held fixed,dose-response,forest 2-5 mm,-0.5556,-0.7891,-0.3222,0.0,-42.6296,-54.5731,-27.546
+bounding: post-storm temperature and RH held fixed,dose-response,forest 5+ mm,-1.3611,-1.6583,-1.0639,0.0,-74.3623,-80.9534,-65.4904
+bounding: post-storm temperature and RH held fixed,dose-response,non-forest 0.1-2 mm,-0.0533,-0.3684,0.2619,0.7405,-5.1867,-30.8183,29.9413
+bounding: post-storm temperature and RH held fixed,dose-response,non-forest 2-5 mm,-0.7684,-1.2356,-0.3012,0.0013,-53.6233,-70.9336,-26.0039
+bounding: post-storm temperature and RH held fixed,dose-response,non-forest 5+ mm,-1.073,-1.6858,-0.4603,0.0006,-65.802,-81.4695,-36.8876
